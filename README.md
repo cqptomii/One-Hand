@@ -14,4 +14,4 @@ The game simply needs a complete shuFled 52-cards deck. Start by drawing a “ha
 Keep drawing cards if you cannot score points but you must always have 4 visible cards in your hand and the previous ones hidden behind the fourth one.
 The Joker: if you cannot discard cards (no matching suits or numbers between the first and last visible cards of your hand) you can get rid of the two cards in the middle of your hand. **This is allowed only three times per game.** The __joker__ score __zero points__ sélectionné.
 
-Explanation here : https://youtu.be/jayssGEYyq4?si=_LqBLqJJpktNnMjQ
+Explication here : https://youtu.be/jayssGEYyq4?si=_LqBLqJJpktNnMjQ
