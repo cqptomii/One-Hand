@@ -6,6 +6,8 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import java.awt.Color;
+import java.awt.Component;
+
 import javax.swing.JLabel;
 import javax.swing.JButton;
 import java.awt.Font;
@@ -20,6 +22,7 @@ public class WaitingWindow extends JFrame implements ActionListener {
 	protected JButton Play;
 	protected JLabel AmountHighScored;
 	private boolean Continue = false;
+	private String HighScore;
 	/**
 	 * Launch the application.
 	 */
@@ -39,7 +42,9 @@ public class WaitingWindow extends JFrame implements ActionListener {
 	/**
 	 * Create the frame.
 	 */
-	public WaitingWindow() {
+	public WaitingWindow() {  
+		this.setHighScore();
+		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 941, 620);
 		contentPane = new JPanel();
@@ -65,12 +70,12 @@ public class WaitingWindow extends JFrame implements ActionListener {
 		ScoreText.setBounds(227, 341, 174, 69);
 		contentPane.add(ScoreText);
 		
-		AmountHighScored = new JLabel("0");
+		AmountHighScored = new JLabel(this.HighScore);
 		AmountHighScored.setForeground(new Color(0, 0, 0));
 		AmountHighScored.setFont(new Font("Viner Hand ITC", Font.BOLD, 30));
 		AmountHighScored.setBounds(411, 351, 85, 48);
 		contentPane.add(AmountHighScored);
-		
+	
 		JLabel DevName = new JLabel("THUNEVIN Fabien    /   FRAISSE Tom");
 		DevName.setFont(new Font("Viner Hand ITC", Font.BOLD, 40));
 		DevName.setBounds(60, 420, 790, 80);
@@ -91,5 +96,8 @@ public class WaitingWindow extends JFrame implements ActionListener {
 	public boolean getGameState() {
 		return this.Continue;
 	}
-
+	// cette fonction lis un fichier .txt pour récuperer le meilleurs score
+	private void setHighScore() {
+		this.HighScore = "0";
+	}
 }
