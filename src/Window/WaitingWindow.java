@@ -42,7 +42,8 @@ public class WaitingWindow extends JFrame implements ActionListener {
 	/**
 	 * Create the frame.
 	 */
-	public WaitingWindow() {  
+	public WaitingWindow() {
+		setTitle("One Hand");  
 		this.setHighScore();
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

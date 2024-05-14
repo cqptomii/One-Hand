@@ -46,41 +46,43 @@ public class GameWindow extends JFrame {
 		contentPane.setLayout(null);
 		
 		JButton JokerButton = new JButton("Joker");
-		JokerButton.setBounds(802, 495, 122, 55);
+		JokerButton.setFont(new Font("Tahoma", Font.BOLD, 20));
+		JokerButton.setBounds(190, 500, 122, 55);
 		contentPane.add(JokerButton);
 		
 		JLabel PointText = new JLabel("Points :");
-		PointText.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		PointText.setBounds(24, 25, 73, 42);
+		PointText.setFont(new Font("Tahoma", Font.BOLD, 20));
+		PointText.setBounds(24, 25, 85, 42);
 		contentPane.add(PointText);
 		
 		JLabel PointAmount = new JLabel("0");
+		PointAmount.setForeground(new Color(255, 255, 255));
 		PointAmount.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		PointAmount.setBounds(100, 28, 45, 36);
+		PointAmount.setBounds(107, 28, 45, 36);
 		contentPane.add(PointAmount);
 		
 		JLabel HandCard1 = new JLabel("");
-		HandCard1.setBounds(80, 177, 150, 255);
+		HandCard1.setBounds(140, 160, 150, 255);
 		contentPane.add(HandCard1);
 		
 		JLabel HandCard4 = new JLabel("");
-		HandCard4.setBounds(710, 177, 150, 255);
+		HandCard4.setBounds(385, 160, 150, 255);
 		contentPane.add(HandCard4);
 		
 		JLabel HandCard2 = new JLabel("");
-		HandCard2.setBounds(290, 177, 150, 255);
+		HandCard2.setBounds(225, 160, 150, 255);
 		contentPane.add(HandCard2);
 		
 		JLabel HandCard3 = new JLabel("");
-		HandCard3.setBounds(500, 177, 150, 250);
+		HandCard3.setBounds(310, 160, 150, 255);
 		contentPane.add(HandCard3);
 		
 		JLabel CardDeck = new JLabel("");
-		CardDeck.setBounds(790, 25, 94, 118);
+		CardDeck.setBounds(774, 36, 150, 200);
 		contentPane.add(CardDeck);
 		
 		JLabel CardDiscarded = new JLabel("");
-		CardDiscarded.setBounds(665, 25, 94, 118);
+		CardDiscarded.setBounds(670, 25, 94, 118);
 		contentPane.add(CardDiscarded);
 		
 		JLabel Joker_1 = new JLabel("");
@@ -94,5 +96,14 @@ public class GameWindow extends JFrame {
 		JLabel Joker_3 = new JLabel("");
 		Joker_3.setBounds(135, 495, 45, 75);
 		contentPane.add(Joker_3);
+		
+		JLabel HideCard = new JLabel("");
+		HideCard.setBounds(774, 252, 150, 200);
+		contentPane.add(HideCard);
+		
+		JLabel lblNewLabel = new JLabel("Joker Card Bench");
+		lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 20));
+		lblNewLabel.setBounds(749, 462, 175, 42);
+		contentPane.add(lblNewLabel);
 	}
 }

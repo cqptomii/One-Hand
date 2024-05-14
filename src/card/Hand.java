@@ -1,26 +1,24 @@
 package card;
-
+import java.util.*;
 
 public class Hand {
-	private Card[] currentHand;
+	private List <Card> currentHand;
 	
 	public Hand() {
-		this.currentHand = new Card[4];
+		this.currentHand = new ArrayList<Card>();
 	}
-	public void add(Card e) {
-		
+	public void discardCard(Card delete) {
+		this.currentHand.remove(delete);
 	}
-	public void remove(Card e) {
-		
+	public void addCard(Card add) {
+		if(this.currentHand.size() < 4) {
+			this.currentHand.add(add);
+		}
 	}
-	public void discardAllHand() {
-		
-	}
-	public void discardMiddleHand() {
-		
-	}
-	public void hideLastCard() {
-		
+	public Card hideLastCard() {
+		Card hiding = this.currentHand.get(this.currentHand.size());
+		this.currentHand.remove(this.currentHand.size());
+		return hiding;
 	}
 	
 }
