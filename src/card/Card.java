@@ -4,7 +4,7 @@ public abstract class Card {
 	private int number;
 	
 	public Card(int number) {
-		if(number > 0 && number <13) {
+		if(number > 0 && number <=13) {
 			this.number = number;
 		}
 	}

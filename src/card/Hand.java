@@ -8,7 +8,9 @@ public class Hand {
 		this.currentHand = new ArrayList<Card>();
 	}
 	public void discardCard(Card delete) {
-		this.currentHand.remove(delete);
+		if(this.currentHand.size() > 0) {
+			this.currentHand.remove(delete);
+		}
 	}
 	public void addCard(Card add) {
 		if(this.currentHand.size() < 4) {
@@ -16,9 +18,22 @@ public class Hand {
 		}
 	}
 	public Card hideLastCard() {
-		Card hiding = this.currentHand.get(this.currentHand.size());
-		this.currentHand.remove(this.currentHand.size());
-		return hiding;
+		int size = this.currentHand.size();
+		if(size >0) {
+			Card hiding = this.currentHand.get(size-1);
+			this.currentHand.remove(size-1);
+			return hiding;
+		}
+		return null;
+	}
+	public Card getCard(int index) {
+		return this.currentHand.get(index);
+	}
+	public List<Card> getCurrentHand(){
+		return this.currentHand;
+	}
+	public int getHandSize() {
+		return currentHand.size();
 	}
 	
 }

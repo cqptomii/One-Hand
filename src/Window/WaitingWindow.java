@@ -1,12 +1,12 @@
 package Window;
 
-import java.awt.EventQueue;
-
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import game.GameController;
+
 import java.awt.Color;
-import java.awt.Component;
 
 import javax.swing.JLabel;
 import javax.swing.JButton;
@@ -21,23 +21,10 @@ public class WaitingWindow extends JFrame implements ActionListener {
 	private JPanel contentPane;
 	protected JButton Play;
 	protected JLabel AmountHighScored;
-	private boolean Continue = false;
 	private String HighScore;
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					WaitingWindow frame = new WaitingWindow();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
+	
+	private GameController secondWindow;
+	
 
 	/**
 	 * Create the frame.
@@ -48,6 +35,9 @@ public class WaitingWindow extends JFrame implements ActionListener {
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 941, 620);
+		this.setResizable(false);
+		this.setLocationRelativeTo(null);
+		getContentPane().setLayout(null);
 		contentPane = new JPanel();
 		contentPane.setBackground(new Color(0, 128, 0));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -64,6 +54,7 @@ public class WaitingWindow extends JFrame implements ActionListener {
 		Play.setFont(new Font("Viner Hand ITC", Font.BOLD, 40));
 		Play.setBounds(311, 243, 236, 80);
 		contentPane.add(Play);
+		Play.addActionListener(this);
 		
 		JLabel ScoreText = new JLabel("High Score :");
 		ScoreText.setForeground(new Color(255, 0, 0));
@@ -81,21 +72,21 @@ public class WaitingWindow extends JFrame implements ActionListener {
 		DevName.setFont(new Font("Viner Hand ITC", Font.BOLD, 40));
 		DevName.setBounds(60, 420, 790, 80);
 		contentPane.add(DevName);
+		
+		this.secondWindow = null;
+		this.setVisible(true);
 	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
 		if(e.getSource() == Play) {
-			this.setContinue();
+			if(this.secondWindow == null) {
+				this.setVisible(false);
+				this.secondWindow = new GameController();
+				this.secondWindow.start();
+			}
 		}
-	}
-	
-	private void setContinue() {
-		this.Continue = true;
-	}
-	public boolean getGameState() {
-		return this.Continue;
 	}
 	// cette fonction lis un fichier .txt pour récuperer le meilleurs score
 	private void setHighScore() {
