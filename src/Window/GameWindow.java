@@ -7,6 +7,7 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import card.Card;
+import card.Hand;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -37,6 +38,7 @@ public class GameWindow extends JFrame implements ActionListener  {
 	protected JLabel CardDiscarded;
 	
 	protected JButton JokerButton;
+	protected JLabel PointAmount;
 	protected JButton PlayButton;
 	private boolean useJoker;
 	private boolean Continue;
@@ -48,7 +50,7 @@ public class GameWindow extends JFrame implements ActionListener  {
 		
 		this.useJoker = false;
 		this.Continue = false;
-		
+
 		setTitle("One Hand");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 960, 620);
@@ -67,10 +69,10 @@ public class GameWindow extends JFrame implements ActionListener  {
 		PointText.setBounds(24, 25, 85, 42);
 		contentPane.add(PointText);
 		
-		JLabel PointAmount = new JLabel("0");
+		PointAmount = new JLabel("");
 		PointAmount.setForeground(new Color(255, 255, 255));
 		PointAmount.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		PointAmount.setBounds(107, 28, 45, 36);
+		PointAmount.setBounds(107, 28, 247, 36);
 		contentPane.add(PointAmount);
 		
 		HandCard1 = new JLabel("");
@@ -176,14 +178,19 @@ public class GameWindow extends JFrame implements ActionListener  {
 			HandCard4.setIcon(new ImageIcon(GameWindow.class.getResource(imagePath)));
 		}
 	}
+	public void displayHand(Hand var) {
+		for (int i=0;i<4;i++) {
+			this.addCard(var.getCard(i), i+1);
+		}
+	}
 	public void discardJoker(int jokerLast) {
-		if(jokerLast == 3) {
+		if(jokerLast == 2) {
 			Joker3.setIcon(null);
 		}
-		else if (jokerLast == 2) {
-			Joker3.setIcon(null);
-		}else if(jokerLast == 1){
-			Joker3.setIcon(null);
+		else if (jokerLast == 1) {
+			Joker2.setIcon(null);
+		}else if(jokerLast == 0){
+			Joker1.setIcon(null);
 		}
 	}
 	public void discardCard(int index) {
@@ -196,10 +203,9 @@ public class GameWindow extends JFrame implements ActionListener  {
 		}else if (index == 4) {
 			HandCard4.setIcon(null);
 		}
-		
-		if(CardDiscarded.getIcon() == null) {
-			CardDiscarded.setIcon(new ImageIcon(GameWindow.class.getResource("/resources/init.png")));
-		}
+	}
+	public void showDiscardCard(Card var) {
+		CardDiscarded.setIcon(new ImageIcon(GameWindow.class.getResource("/resources/discard.png")));
 	}
 	public void hideCard(Card var) {
 		HideCard.setIcon(new ImageIcon(GameWindow.class.getResource(CardIcon(var.getNumber(),var.getSuit()))));
@@ -215,6 +221,11 @@ public class GameWindow extends JFrame implements ActionListener  {
 	}
 	public void setContinue(boolean var) {
 		this.Continue = var;
+	}
+	public void UpdateScore(int score) {
+		String var = "";
+		var += score;
+		PointAmount.setText(var);
 	}
 	@Override
 	public void actionPerformed(ActionEvent e) {

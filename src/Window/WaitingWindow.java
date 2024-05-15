@@ -5,6 +5,7 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import game.GameController;
+import score.Score;
 
 import java.awt.Color;
 
@@ -21,7 +22,7 @@ public class WaitingWindow extends JFrame implements ActionListener {
 	private JPanel contentPane;
 	protected JButton Play;
 	protected JLabel AmountHighScored;
-	private String HighScore;
+	private Score HighScore;
 	
 	private GameController secondWindow;
 	
@@ -30,9 +31,11 @@ public class WaitingWindow extends JFrame implements ActionListener {
 	 * Create the frame.
 	 */
 	public WaitingWindow() {
+		String filePath = System.getProperty("user.dir");
+		filePath += "/src/resources/Score.txt";
+		this.HighScore = new Score();
+		this.HighScore.getScoreFromFile(filePath);
 		setTitle("One Hand");  
-		this.setHighScore();
-		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 941, 620);
 		this.setResizable(false);
@@ -62,7 +65,9 @@ public class WaitingWindow extends JFrame implements ActionListener {
 		ScoreText.setBounds(227, 341, 174, 69);
 		contentPane.add(ScoreText);
 		
-		AmountHighScored = new JLabel(this.HighScore);
+		String var = "";
+		var += this.HighScore.getScore();
+		AmountHighScored = new JLabel(var);
 		AmountHighScored.setForeground(new Color(0, 0, 0));
 		AmountHighScored.setFont(new Font("Viner Hand ITC", Font.BOLD, 30));
 		AmountHighScored.setBounds(411, 351, 85, 48);
@@ -76,7 +81,6 @@ public class WaitingWindow extends JFrame implements ActionListener {
 		this.secondWindow = null;
 		this.setVisible(true);
 	}
-
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
@@ -87,9 +91,5 @@ public class WaitingWindow extends JFrame implements ActionListener {
 				this.secondWindow.start();
 			}
 		}
-	}
-	// cette fonction lis un fichier .txt pour récuperer le meilleurs score
-	private void setHighScore() {
-		this.HighScore = "0";
 	}
 }
