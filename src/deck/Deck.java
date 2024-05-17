@@ -29,7 +29,7 @@ public class Deck {
 	}
 	public Card PickFirstCard() {
 		int deckIndex = this.cardDeck.size()-1;
-;		if(deckIndex > 0) {
+;		if(deckIndex >= 0) {
 			Card var = cardDeck.get(deckIndex);
 			cardDeck.remove(deckIndex);
 			return var;

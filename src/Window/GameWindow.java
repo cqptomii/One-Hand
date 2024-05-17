@@ -36,12 +36,16 @@ public class GameWindow extends JFrame implements ActionListener  {
 	protected JLabel HideCard;
 	protected JLabel CardDeck;
 	protected JLabel CardDiscarded;
+	protected JLabel EndLabel;
 	
 	protected JButton JokerButton;
 	protected JLabel PointAmount;
 	protected JButton PlayButton;
+	protected JButton PickDrawer;
+	
 	private boolean useJoker;
 	private boolean Continue;
+	private boolean useDrawCard;
 	
 	/**
 	 * Create the frame.
@@ -50,7 +54,8 @@ public class GameWindow extends JFrame implements ActionListener  {
 		
 		this.useJoker = false;
 		this.Continue = false;
-
+		this.useDrawCard = false;
+		
 		setTitle("One Hand");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 960, 620);
@@ -118,7 +123,7 @@ public class GameWindow extends JFrame implements ActionListener  {
 		
 		JLabel lblNewLabel = new JLabel("Joker Card Bench");
 		lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 20));
-		lblNewLabel.setBounds(749, 462, 175, 42);
+		lblNewLabel.setBounds(749, 450, 175, 42);
 		contentPane.add(lblNewLabel);
 		
 		PlayButton = new JButton("Continue");
@@ -132,6 +137,18 @@ public class GameWindow extends JFrame implements ActionListener  {
 		JokerButton.setBounds(190, 500, 122, 55);
 		contentPane.add(JokerButton);
 		JokerButton.addActionListener(this);
+		
+		EndLabel = new JLabel("");
+		EndLabel.setFont(new Font("Tahoma", Font.BOLD, 20));
+		EndLabel.setBounds(128, 192, 636, 80);
+		EndLabel.setAlignmentX(JLabel.CENTER);
+		contentPane.add(EndLabel);
+		
+		PickDrawer = new JButton("Pick");
+		PickDrawer.setFont(new Font("Tahoma", Font.BOLD, 20));
+		PickDrawer.setBounds(774, 495, 134, 60);
+		contentPane.add(PickDrawer);
+		PickDrawer.addActionListener(this);
 		this.setVisible(true);
 	}
 	
@@ -166,21 +183,26 @@ public class GameWindow extends JFrame implements ActionListener  {
 	}
 	
 	public void addCard(Card var,int handIndex) {
-		String imagePath = "";
-		imagePath = this.CardIcon(var.getNumber(),var.getSuit());
-		if(handIndex == 1) { 
-			HandCard1.setIcon(new ImageIcon(GameWindow.class.getResource(imagePath)));
-		}else if(handIndex == 2) {
-			HandCard2.setIcon(new ImageIcon(GameWindow.class.getResource(imagePath)));
-		}else if(handIndex == 3) {
-			HandCard3.setIcon(new ImageIcon(GameWindow.class.getResource(imagePath)));
-		}else if (handIndex == 4) {
-			HandCard4.setIcon(new ImageIcon(GameWindow.class.getResource(imagePath)));
+		if(var != null) {
+				
+			String imagePath = "";
+			imagePath = this.CardIcon(var.getNumber(),var.getSuit());
+			if(handIndex == 1) { 
+				HandCard1.setIcon(new ImageIcon(GameWindow.class.getResource(imagePath)));
+			}else if(handIndex == 2) {
+				HandCard2.setIcon(new ImageIcon(GameWindow.class.getResource(imagePath)));
+			}else if(handIndex == 3) {
+				HandCard3.setIcon(new ImageIcon(GameWindow.class.getResource(imagePath)));
+			}else if (handIndex == 4) {
+				HandCard4.setIcon(new ImageIcon(GameWindow.class.getResource(imagePath)));
+			}
 		}
 	}
 	public void displayHand(Hand var) {
-		for (int i=0;i<4;i++) {
-			this.addCard(var.getCard(i), i+1);
+		if(var != null) {
+			for (int i=0;i<4;i++) {
+				this.addCard(var.getCard(i), i+1);
+			}
 		}
 	}
 	public void discardJoker(int jokerLast) {
@@ -207,8 +229,12 @@ public class GameWindow extends JFrame implements ActionListener  {
 	public void showDiscardCard(Card var) {
 		CardDiscarded.setIcon(new ImageIcon(GameWindow.class.getResource("/resources/discard.png")));
 	}
-	public void hideCard(Card var) {
-		HideCard.setIcon(new ImageIcon(GameWindow.class.getResource(CardIcon(var.getNumber(),var.getSuit()))));
+	public void ShowHideCard(Card var) {
+		if(var == null) {
+			HideCard.setIcon(null);
+		}else {
+			HideCard.setIcon(new ImageIcon(GameWindow.class.getResource(CardIcon(var.getNumber(),var.getSuit()))));	
+		}
 	}
 	public boolean getUseJoker() {
 		return this.useJoker;
@@ -222,10 +248,32 @@ public class GameWindow extends JFrame implements ActionListener  {
 	public void setContinue(boolean var) {
 		this.Continue = var;
 	}
+	public boolean getUseDrawCard() {
+		return this.useDrawCard;
+	}
+	public void setUseDrawCard(boolean var) {
+		this.useDrawCard = var;
+	}
 	public void UpdateScore(int score) {
 		String var = "";
 		var += score;
 		PointAmount.setText(var);
+	}
+	public void showEndScreen(int score, int highScore) {
+		String var = "<html>		 -- Game Over -- <br> You have scored ";
+		var += score;
+		var += " points <br>";
+		var += "High Score : ";
+		var += highScore;
+		var += " points <br> <html>";
+		System.out.println(var);
+		EndLabel.setText(var);
+		
+		//Hide Cards
+		this.HandCard1.setVisible(false);
+		this.HandCard2.setVisible(false);
+		this.HandCard3.setVisible(false);
+		this.HandCard4.setVisible(false);
 	}
 	@Override
 	public void actionPerformed(ActionEvent e) {
@@ -234,6 +282,8 @@ public class GameWindow extends JFrame implements ActionListener  {
 			this.Continue = true;
 		}else if(e.getSource() == JokerButton) {
 			this.useJoker = true;
+		}else if(e.getSource() == PickDrawer) {
+			this.useDrawCard = true;
 		}
 		
 	}

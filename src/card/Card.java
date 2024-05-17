@@ -28,4 +28,7 @@ public abstract class Card {
 	}
 	public abstract char getSuit();
 	public abstract boolean hasSameSuit(Card e);
+	public String toString() {
+		return "number :" + this.number;
+	}
 }

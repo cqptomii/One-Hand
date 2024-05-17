@@ -20,4 +20,7 @@ public class Club extends Card{
 	public char getSuit() {
 		return this.suit;
 	}
+	public String toString() {
+		return "number: " + super.getNumber() + ", Suit:" + this.suit;
+	}
 }
