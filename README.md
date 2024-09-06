@@ -34,7 +34,9 @@ To reproduce this game, we decided to separate the project between 6 packages:
 -	The “game” is the root of the game, thanks to this package the game can work
 -	The “main” which only allows you to launch the game
 -	The “Score” which allows you to count the points obtained by the player.
-  
+
+![alt text](https://github.com/cqptomii/One-Hand/blob/master/UML-Design.jpg)
+
 # Difficulties encountered:
 
 
