@@ -18,9 +18,9 @@ Explication here : https://youtu.be/jayssGEYyq4?si=_LqBLqJJpktNnMjQ
 
 ## Our Final Work 
 
-![alt text](https://github.com/cqptomii/One-Hand/Pic/Capture d'écran 2024-09-06 115138.png)
-![alt text](https://github.com/cqptomii/One-Hand/Pic/Capture d'écran 2024-09-06 115148.png)
-![alt text](https://github.com/cqptomii/One-Hand/Pic/Capture d'écran 2024-09-06 115220.png)
+![alt text](https://github.com/cqptomii/One-Hand/Pic/1)
+![alt text](https://github.com/cqptomii/One-Hand/Pic/2)
+![alt text](https://github.com/cqptomii/One-Hand/Pic/3)
 # Our Work on images
 
 # Context of the project:
